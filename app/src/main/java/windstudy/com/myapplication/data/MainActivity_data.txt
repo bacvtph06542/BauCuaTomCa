@@ -1,0 +1,192 @@
+package windstudy.com.myapplication;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+    String TAG = getClass().getSimpleName();
+
+    Button btnLac;
+    ImageView imgXucXac1, imgXucXac2, imgXucXac3;
+    ImageView imgBau, imgCua, imgTom, imgCa, imgGa, imgNai;
+    TextView tvCuocBau, tvCuocCua, tvCuocTom, tvCuocCa, tvCuocGa, tvCuocNai, tvTong;
+    int tongXu, cuocBau, cuocCua, cuocCa, cuocGa, cuocNai, cuocTom;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_full);
+        tongXu = 100000;
+        btnLac = findViewById(R.id.btn_lac);
+        imgXucXac1 = findViewById(R.id.img_xuc_xac_1);
+        imgXucXac3 = findViewById(R.id.img_xuc_xac_3);
+        imgXucXac2 = findViewById(R.id.img_xuc_xac_2);
+        btnLac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionLac();
+            }
+        });
+
+        imgBau = findViewById(R.id.img_bau);
+        imgCua = findViewById(R.id.img_cua);
+        imgTom = findViewById(R.id.img_tom);
+        imgCa = findViewById(R.id.img_ca);
+        imgGa = findViewById(R.id.img_ga);
+        imgNai = findViewById(R.id.img_nai);
+
+        tvCuocBau = findViewById(R.id.tv_cuoc_bau);
+        tvCuocCua = findViewById(R.id.tv_cuoc_cua);
+        tvCuocTom = findViewById(R.id.tv_cuoc_tom);
+        tvCuocCa = findViewById(R.id.tv_cuoc_ca);
+        tvCuocGa = findViewById(R.id.tv_cuoc_ga);
+        tvCuocNai = findViewById(R.id.tv_cuoc_nai);
+
+        tvTong = findViewById(R.id.tv_tong);
+
+
+        imgBau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocBau = cuocBau + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocBau.setText("" + cuocBau);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        imgCua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocCua = cuocCua + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocCua.setText("" + cuocCua);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        imgTom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocTom = cuocTom + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocTom.setText("" + cuocTom);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        imgCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocCa = cuocCa + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocCa.setText("" + cuocCa);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        imgGa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocGa = cuocGa + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocGa.setText("" + cuocGa);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        imgNai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongXu == 0)
+                    return;
+                cuocNai = cuocNai + 10000;
+                tongXu = tongXu - 10000;
+                tvCuocNai.setText("" + cuocNai);
+                tvTong.setText("" + tongXu + " Xu");
+            }
+        });
+        reset();
+    }
+
+    public void reset() {
+        cuocBau = 0;
+        cuocCua = 0;
+        cuocCa = 0;
+        cuocGa = 0;
+        cuocNai = 0;
+        cuocTom = 0;
+        tvCuocNai.setText("" + cuocNai);
+        tvCuocGa.setText("" + cuocGa);
+        tvCuocCa.setText("" + cuocCa);
+        tvCuocTom.setText("" + cuocTom);
+        tvCuocCua.setText("" + cuocCua);
+        tvCuocBau.setText("" + cuocBau);
+    }
+
+
+    public void actionLac() {
+        Log.d(TAG, "actionLac: ");
+        Random r = new Random();
+        int xx1 = r.nextInt(6);
+        quayXucXac(imgXucXac1, xx1);
+        int xx2 = r.nextInt(6);
+        quayXucXac(imgXucXac2, xx2);
+        int xx3 = r.nextInt(6);
+        quayXucXac(imgXucXac3, xx3);
+
+        if (xx1 == 0 || xx2 == 0 || xx3 == 0) {
+            tongXu = tongXu + (cuocBau * 2);
+        }
+
+        if (xx1 == 1 || xx2 == 1 || xx3 == 1) {
+            tongXu = tongXu + (cuocCua * 2);
+        }
+        if (xx1 == 2 || xx2 == 2 || xx3 == 2) {
+            tongXu = tongXu + (cuocTom * 2);
+        }
+        if (xx1 == 3 || xx2 == 3 || xx3 == 3) {
+            tongXu = tongXu + (cuocCa * 2);
+        }
+        if (xx1 == 4 || xx2 == 4 || xx3 == 4) {
+            tongXu = tongXu + (cuocGa * 2);
+        }
+        if (xx1 == 5 || xx2 == 5 || xx3 == 5) {
+            tongXu = tongXu + (cuocNai * 2);
+        }
+
+        tvTong.setText("" + tongXu + " Xu");
+        reset();
+
+    }
+
+    public void quayXucXac(ImageView imgXucXac, int viTri) {
+        if (viTri == 0) {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_bau));
+        } else if (viTri == 1) {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_cua));
+        } else if (viTri == 2) {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_tom));
+        } else if (viTri == 3) {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_ca));
+        } else if (viTri == 4) {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_ga));
+        } else {
+            imgXucXac.setImageDrawable(getResources().getDrawable(R.drawable.img_nai));
+        }
+    }
+
+}
